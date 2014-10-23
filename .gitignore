@@ -1,3 +1,6 @@
+#===this project===
+
+
 #===windows globle===
 # Windows image file caches
 Thumbs.db
@@ -22,24 +25,6 @@ tmp/
 local.properties
 .settings/
 .loadpath
-
-# External tool builders
-.externalToolBuilders/
-
-# Locally stored "Eclipse launch configurations"
-*.launch
-
-# CDT-specific
-.cproject
-
-# PDT-specific
-.buildpath
-
-# sbteclipse plugin 
-.target
-
-# TeXlipse plugin
-.texlipse
 
 #===svn===
 .svn/
