@@ -8,17 +8,17 @@ public class ByteArray {
 
     /**
      * Convert a bytes array to a hex string
-     * Example:[0x1A,0x02] -> "1A02"
+     * Example: [0x1A,0x02] -> "1A02"
      * @param octets
      * @return
      */
     public static String toHexString(byte[] octets) {
-        return ByteArray.toHexString(octets, 0, octets.length);
+        return toHexString(octets, 0, octets.length);
     }
     
     /**
      * Convert a bytes array to a hex string
-     * Example:[0x1A,0x02] -> "1A02"
+     * Example: [0x1A,0x02] -> "1A02"
      * @param octets
      * @param offset
      * @param length
@@ -36,7 +36,7 @@ public class ByteArray {
     
     /**
      * Convert a hex string to a byte array
-     * Example:"1A02" -> [0x1A,0x02]
+     * Example: "1A02" -> [0x1A,0x02]
      * @param hexstr
      * @return if hexstr is not a hex string, return null.
      */
@@ -76,4 +76,88 @@ public class ByteArray {
         }
         return buf;
     }
+    
+    /**
+     * 
+     * @param octets
+     * @param offset
+     * @param length
+     * @return
+     */
+    public static byte[] middleOf(byte[] octets, int offset, int length) {
+        byte[] buf = new byte[length];
+        System.arraycopy(octets, offset, buf, 0, length);
+        return buf;
+    }
+    
+    /**
+     * 
+     * @param octets
+     * @param length
+     * @return
+     */
+    public static byte[] endOf(byte[] octets, int length) {
+        return middleOf(octets, octets.length - length, length);
+    }
+    
+    /**
+     * 
+     * @param octets
+     * @param length
+     * @return
+     */
+    public static byte[] beginOf(byte[] octets, int length) {
+        return middleOf(octets, 0, length);
+    }
+    
+    /**
+     * Expand the number of byte(0x00) on the left side
+     * @param octets
+     * @param number
+     * @return
+     */
+    public static byte[] leftExpand(byte[] octets, int number) {
+        byte[] buf = new byte[octets.length + number];
+        System.arraycopy(octets, 0, buf, number, octets.length);
+        return buf;
+    }
+    
+    /**
+     * Expand the number of byte(0x00) on the right side
+     * @param octets
+     * @param number
+     * @return
+     */
+    public static byte[] rightExpand(byte[] octets, int number) {
+        byte[] buf = new byte[octets.length + number];
+        System.arraycopy(octets, 0, buf, 0, octets.length);
+        return buf;
+    }
+    
+    /**
+     * Expand a byte on the left side
+     * @param octets
+     * @param expand
+     * @return
+     */
+    public static byte[] leftExpand(byte[] octets, byte expand) {
+        byte[] buf = new byte[octets.length + 1];
+        System.arraycopy(octets, 0, buf, 1, octets.length);
+        buf[0] = expand;
+        return buf;
+    }
+    
+    /**
+     * Expand a byte on the right side
+     * @param octets
+     * @param expand
+     * @return
+     */
+    public static byte[] rightExpand(byte[] octets, byte expand) {
+        byte[] buf = new byte[octets.length + 1];
+        System.arraycopy(octets, 0, buf, 0, octets.length);
+        buf[octets.length] = expand;
+        return buf;
+    }
+    
 }
