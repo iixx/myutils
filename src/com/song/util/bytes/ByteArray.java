@@ -5,6 +5,16 @@ import java.util.regex.Pattern;
 
 public class ByteArray {
     private static final Pattern MATCH_HEX_STRING = Pattern.compile("^([0-9a-fA-F][0-9a-fA-F])+$");
+    
+    public static String getBytePrintString(byte[] buf) {
+        char[] hex = { '0', '1', '2', '3', '4', '5', '6', '7', '8', '9',
+                'A', 'B', 'C', 'D', 'E', 'F' };
+        StringBuilder sb = new StringBuilder(buf.length * 2);
+        for (int i = 0; i < buf.length; i++) {
+            sb.append("" + hex[(buf[i] >> 4 & 0x0f)] + hex[buf[i] & 0x0f]);
+        }
+        return sb.toString();
+    }
 
     /**
      * Convert a bytes array to a hex string
